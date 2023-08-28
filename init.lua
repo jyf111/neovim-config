@@ -1,6 +1,41 @@
-require('core.options')
-require('core.keymaps')
-require('core.plugins')
+local opt = vim.opt
+local g = vim.g
 
-require("core.init")
+opt.colorcolumn = "80"
+opt.cursorcolumn = true
+opt.encoding = "utf-8"
+opt.backup = false
+opt.swapfile = false
+opt.wrap = false
+opt.scrolloff = 2
+opt.wildignore = {
+  "*node_modules/**",
+  "*.o",
+  "*.obj",
+  "*.dll",
+  "*.jar",
+  "*.pyc",
+  "*.rbc",
+  "*.class",
+  "*.gif",
+  "*.ico",
+  "*.jpg",
+  "*.jpeg",
+  "*.png",
+  "*.avi",
+  "*.wav",
+  "*.swp",
+  ".lock",
+  ".DS_Store",
+  "tags.lock",
+}
 
+g.mapleader = ","
+
+local autocmd = vim.api.nvim_create_autocmd
+
+-- Auto resize panes when resizing nvim window
+autocmd("VimResized", {
+  pattern = "*",
+  command = "tabdo wincmd =",
+})
