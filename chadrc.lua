@@ -1,10 +1,10 @@
----@type ChadrcConfig 
+---@type ChadrcConfig
 local M = {}
 
-local highlights = require "custom.highlights"
+local highlights = require("custom.highlights")
 
 M.ui = {
-  theme = 'catppuccin',
+  theme = "catppuccin",
   transparency = false,
   hl_override = highlights.override,
 
@@ -21,6 +21,6 @@ M.ui = {
 
 M.plugins = "custom.plugins"
 
-M.mappings = require "custom.mappings"
+M.mappings = require("custom.mappings")
 
 return M

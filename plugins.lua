@@ -1,4 +1,4 @@
-local overrides = require "custom.configs.overrides"
+local overrides = require("custom.configs.overrides")
 
 local plugins = {
   {
@@ -17,11 +17,31 @@ local plugins = {
         version = "*",
         opts = {},
       },
+      {
+        "nvimdev/guard.nvim",
+        cmd = { "GuardFmt" },
+        config = function()
+          require("custom.configs.guard")
+        end,
+      },
     },
     config = function()
-      require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig"
+      require("plugins.configs.lspconfig")
+      require("custom.configs.lspconfig")
     end,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      {
+        "hrsh7th/cmp-cmdline",
+        event = "CmdlineEnter",
+        config = function()
+          require("custom.configs.cmp-cmdline")
+        end,
+      },
+      { "lukas-reineke/cmp-under-comparator" },
+    },
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -35,6 +55,19 @@ local plugins = {
           require("custom.configs.ts-context")
         end,
       },
+      {
+        "windwp/nvim-ts-autotag",
+        config = function()
+          require("custom.configs.autotag")
+        end,
+      },
+    },
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      { "nvim-telescope/telescope-live-grep-args.nvim" },
     },
   },
   {
@@ -63,7 +96,7 @@ local plugins = {
     },
   },
   {
-    'tzachar/local-highlight.nvim',
+    "tzachar/local-highlight.nvim",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("custom.configs.local-highlight")
@@ -77,37 +110,16 @@ local plugins = {
     end,
   },
   {
-    "karb94/neoscroll.nvim",
-    keys = { "<C-d>", "<C-u>", "<C-b>", "<C-f>", "zt", "zz", "zb" },
+    "declancm/cinnamon.nvim",
+    event = { "CursorHold", "CursorHoldI" },
     config = function()
-      require ("neoscroll").setup { mappings = {
-        "<C-u>",
-        "<C-d>",
-        "<C-b>",
-        "<C-f>",
-        "zt",
-        "zz",
-        "zb",
-      }}
+      require("custom.configs.cinnamon")
     end,
   },
   {
     "iamcco/markdown-preview.nvim",
     ft = "markdown",
     build = ":call mkdp#util#install()",
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      {
-        "hrsh7th/cmp-cmdline",
-        event = "CmdlineEnter",
-        config = function()
-          require("custom.configs.cmp-cmdline")
-        end,
-      },
-      { "lukas-reineke/cmp-under-comparator" },
-    },
   },
   {
     "j-hui/fidget.nvim",
@@ -121,12 +133,12 @@ local plugins = {
     opts = overrides.smartcolumn,
   },
   {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-      { "nvim-telescope/telescope-live-grep-args.nvim" },
-    }
-  }
+    "rcarriga/nvim-notify",
+    event = "VeryLazy",
+    config = function()
+      require("custom.configs.notify")
+    end,
+  },
 }
 
 return plugins

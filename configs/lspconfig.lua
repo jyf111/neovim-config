@@ -11,9 +11,9 @@ local servers = {
   "pylsp",
 }
 
-require("mason-lspconfig").setup {
+require("mason-lspconfig").setup({
   ensure_installed = servers,
-}
+})
 
 local merge_tb = vim.tbl_deep_extend
 
@@ -27,7 +27,7 @@ local default_handler = {
   capabilities = capabilities,
 }
 
-require("mason-lspconfig").setup_handlers {
+require("mason-lspconfig").setup_handlers({
   function(server_name)
     local present, user_handler = pcall(require, "custom.configs.lsp." .. server_name)
     if not present then
@@ -36,4 +36,4 @@ require("mason-lspconfig").setup_handlers {
       lspconfig[server_name].setup(merge_tb("force", default_handler, user_handler))
     end
   end,
-}
+})

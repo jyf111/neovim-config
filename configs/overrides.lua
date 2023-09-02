@@ -1,9 +1,14 @@
 local M = {}
 
 M.mason = {
-  "clangd",
-  "lua-language-server",
-  "python-lsp-server",
+  ensure_installed = {
+    "clangd",
+    "lua-language-server",
+    "python-lsp-server",
+
+    "clang-format",
+    "stylua",
+  },
 }
 
 M.treesitter = {
@@ -82,7 +87,7 @@ M.fidget = {
 }
 
 M.smartcolumn = {
-  colorcolumn = "80",
+  colorcolumn = "120",
   disabled_filetypes = {
     "help",
     "text",

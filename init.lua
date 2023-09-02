@@ -1,7 +1,7 @@
 local opt = vim.opt
 local g = vim.g
 
-opt.colorcolumn = "80"
+opt.colorcolumn = "120"
 opt.cursorcolumn = true
 opt.encoding = "utf-8"
 opt.backup = false
@@ -31,11 +31,3 @@ opt.wildignore = {
 }
 
 g.mapleader = ","
-
-local autocmd = vim.api.nvim_create_autocmd
-
--- Auto resize panes when resizing nvim window
-autocmd("VimResized", {
-  pattern = "*",
-  command = "tabdo wincmd =",
-})

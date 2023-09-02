@@ -44,21 +44,24 @@ git clone https://github.com/jyf111/neovim-config ~/.config/nvim/lua/custom --de
 - [folke/flash.nvim](https://github.com/folke/flash.nvim)
 - [tzachar/local-highlight.nvim](https://github.com/tzachar/local-highlight.nvim)
 - [nacro90/numb.nvim](https://github.com/nacro90/numb.nvim)
-- [karb94/neoscroll.nvim](https://github.com/karb94/neoscroll.nvim)
 - [iamcco/markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
 - [hrsh7th/cmp-cmdline](https://github.com/hrsh7th/cmp-cmdline)
 - [lukas-reineke/cmp-under-comparator](https://github.com/lukas-reineke/cmp-under-comparator)
+- [windwp/nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
 - [j-hui/fidget.nvim](https://github.com/j-hui/fidget.nvim)
 - [m4xshen/smartcolumn.nvim](https://github.com/m4xshen/smartcolumn.nvim)
 - [nvim-telescope/telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)
 - [nvim-telescope/telescope-live-grep-args.nvim](https://github.com/nvim-telescope/telescope-live-grep-args.nvim)
+- [declancm/cinnamon.nvim](https://github.com/declancm/cinnamon.nvim)
+- [rcarriga/nvim-notify](https://github.com/rcarriga/nvim-notify)
 
 ## Uninstall
 
 ```bash
-sudo rm /usr/local/bin/nvim
-sudo rm -rf /usr/local/share/nvim/
 # rm configs
 rm -rf $HOME/.config/nvim
 rm -rf $HOME/.local/share/nvim
+# rm neovim
+sudo rm /usr/local/bin/nvim
+sudo rm -rf /usr/local/share/nvim/
 ```
