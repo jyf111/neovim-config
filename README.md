@@ -54,6 +54,8 @@ git clone https://github.com/jyf111/neovim-config ~/.config/nvim/lua/custom --de
 - [nvim-telescope/telescope-live-grep-args.nvim](https://github.com/nvim-telescope/telescope-live-grep-args.nvim)
 - [declancm/cinnamon.nvim](https://github.com/declancm/cinnamon.nvim)
 - [rcarriga/nvim-notify](https://github.com/rcarriga/nvim-notify)
+- [mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint)
+- [nvimdev/guard.nvim](https://github.com/nvimdev/guard.nvim)
 
 ## Uninstall
 

@@ -24,6 +24,12 @@ local plugins = {
           require("custom.configs.guard")
         end,
       },
+      {
+        "mfussenegger/nvim-lint",
+        config = function()
+          require("custom.configs.nvim-lint")
+        end,
+      },
     },
     config = function()
       require("plugins.configs.lspconfig")

@@ -8,6 +8,8 @@ M.mason = {
 
     "clang-format",
     "stylua",
+
+    "luacheck",
   },
 }
 
