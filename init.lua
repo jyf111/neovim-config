@@ -39,3 +39,9 @@ autocmd({ "BufWritePost" }, {
     require("lint").try_lint()
   end,
 })
+
+-- Auto resize panes when resizing nvim window
+autocmd("VimResized", {
+  pattern = "*",
+  command = "tabdo wincmd =",
+})

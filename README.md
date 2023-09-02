@@ -12,7 +12,7 @@ Custom configuration based on [`NvChad`](https://github.com/NvChad/NvChad).
 
 1. install Neovim 0.9.1
 
-```bash
+```shell
 curl -LO https://github.com/neovim/neovim/releases/download/v0.9.1/nvim.appimage
 chmod u+x nvim.appimage
 ./nvim.appimage --appimage-extract
@@ -23,15 +23,19 @@ sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
 
 2. install NvChad
 
-
-```bash
+```shell
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
-nvim # choose No
+nvim # press N
 ```
 
 3. download custom configs
-```bash
-git clone https://github.com/jyf111/neovim-config ~/.config/nvim/lua/custom --depth 1
+```shell
+rm -rf ~/.config/nvim/lua/custom && git clone https://github.com/jyf111/neovim-config ~/.config/nvim/lua/custom --depth 1
+```
+
+4. LSP server dependencies
+```shell
+sudo apt install python3-venv luarocks
 ```
 
 ## Extra plugins
@@ -59,7 +63,7 @@ git clone https://github.com/jyf111/neovim-config ~/.config/nvim/lua/custom --de
 
 ## Uninstall
 
-```bash
+```shell
 # rm configs
 rm -rf $HOME/.config/nvim
 rm -rf $HOME/.local/share/nvim
