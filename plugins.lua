@@ -145,6 +145,20 @@ local plugins = {
       require("custom.configs.notify")
     end,
   },
+  {
+    "stevearc/aerial.nvim",
+    cmd = { "AerialToggle" },
+    config = function()
+      require("custom.configs.aerial")
+    end,
+  },
+  {
+    "dstein64/nvim-scrollview",
+    event = { "BufReadPost", "BufAdd", "BufNewFile" },
+    config = function()
+      require("custom.configs.scrollview")
+    end,
+  },
 }
 
 return plugins
