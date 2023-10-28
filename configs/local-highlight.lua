@@ -13,7 +13,7 @@ local_highlight.setup({
     "rust",
   }, -- If this is given only attach to this
   -- OR attach to every filetype except:
-  disable_file_types = { "tex" },
+  disable_file_types = { "tex", "markdown" },
   hlgroup = "Search",
   cw_hlgroup = nil,
 })

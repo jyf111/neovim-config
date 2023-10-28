@@ -62,6 +62,7 @@ sudo apt install python3-venv luarocks
 - [nvimdev/guard.nvim](https://github.com/nvimdev/guard.nvim)
 - [stevearc/aerial.nvim](https://github.com/stevearc/aerial.nvim)
 - [dstein64/nvim-scrollview](https://github.com/dstein64/nvim-scrollview)
+- [kevinhwang91/nvim-ufo](https://github.com/kevinhwang91/nvim-ufo)
 
 ## Uninstall
 

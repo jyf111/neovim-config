@@ -10,19 +10,14 @@ local plugins = {
         opts = overrides.mason,
       },
       { "williamboman/mason-lspconfig.nvim" },
-      { "SmiteshP/nvim-navic" },
       {
         "utilyre/barbecue.nvim",
         name = "barbecue",
         version = "*",
+        dependencies = {
+          "SmiteshP/nvim-navic",
+        },
         opts = {},
-      },
-      {
-        "nvimdev/guard.nvim",
-        cmd = { "GuardFmt" },
-        config = function()
-          require("custom.configs.guard")
-        end,
       },
       {
         "mfussenegger/nvim-lint",
@@ -30,11 +25,60 @@ local plugins = {
           require("custom.configs.nvim-lint")
         end,
       },
+      {
+        "dnlhc/glance.nvim",
+        config = function()
+          require("custom.configs.glance")
+        end
+      },
+      {
+        "kevinhwang91/nvim-ufo",
+        dependencies = {
+          { "kevinhwang91/promise-async" },
+          {
+            "luukvbaal/statuscol.nvim",
+            config = function()
+              require("custom.configs.statuscol")
+            end,
+          },
+        },
+        init = function()
+          vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+          vim.o.foldcolumn = "1" -- '0' is not bad
+          vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+          vim.o.foldlevelstart = 99
+          vim.o.foldenable = true
+        end,
+        config = function()
+          require("custom.configs.nvim-ufo")
+        end,
+      },
     },
     config = function()
       require("plugins.configs.lspconfig")
       require("custom.configs.lspconfig")
     end,
+  },
+  {
+    "stevearc/conform.nvim",
+    cmd = { "Format", "FormatEnable", "FormatDisable" },
+    opts = {},
+    config = function()
+      require("custom.configs.conform")
+    end,
+  },
+  {
+    "stevearc/aerial.nvim",
+    cmd = { "AerialToggle" },
+    config = function()
+      require("custom.configs.aerial")
+    end,
+  },
+  {
+    "j-hui/fidget.nvim",
+    tag = "legacy",
+    event = "LspAttach",
+    opts = overrides.fidget,
   },
   {
     "hrsh7th/nvim-cmp",
@@ -67,13 +111,30 @@ local plugins = {
           require("custom.configs.autotag")
         end,
       },
+      {
+        "abecodes/tabout.nvim",
+        config = function()
+          require("custom.configs.tabout")
+        end,
+      },
     },
   },
   {
     "nvim-telescope/telescope.nvim",
+    opts = overrides.telescope,
     dependencies = {
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       { "nvim-telescope/telescope-live-grep-args.nvim" },
+      {
+        "aaronhallaert/advanced-git-search.nvim",
+        config = function()
+          require("custom.configs.advanced-git-search")
+        end,
+        dependencies = {
+          "tpope/vim-fugitive",
+          "tpope/vim-rhubarb",
+        },
+      },
     },
   },
   {
@@ -128,29 +189,9 @@ local plugins = {
     build = ":call mkdp#util#install()",
   },
   {
-    "j-hui/fidget.nvim",
-    tag = "legacy",
-    event = "LspAttach",
-    opts = overrides.fidget,
-  },
-  {
     "m4xshen/smartcolumn.nvim",
     event = { "BufReadPost", "BufNewFile" },
     opts = overrides.smartcolumn,
-  },
-  {
-    "rcarriga/nvim-notify",
-    event = "VeryLazy",
-    config = function()
-      require("custom.configs.notify")
-    end,
-  },
-  {
-    "stevearc/aerial.nvim",
-    cmd = { "AerialToggle" },
-    config = function()
-      require("custom.configs.aerial")
-    end,
   },
   {
     "dstein64/nvim-scrollview",

@@ -1,6 +1,10 @@
 local configs = require("plugins.configs.lspconfig")
 local on_attach = configs.on_attach
 local capabilities = configs.capabilities
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
 
 local lspconfig = require("lspconfig")
 local navic = require("nvim-navic")

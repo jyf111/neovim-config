@@ -2,14 +2,32 @@ local M = {}
 
 M.mason = {
   ensure_installed = {
+    -- lsp
     "clangd",
+    "gopls",
     "lua-language-server",
     "python-lsp-server",
-
+    "rust-analyzer",
+    -- formatter
     "clang-format",
+    "isort",
     "stylua",
-
+    -- linter
     "luacheck",
+    "shellcheck",
+  },
+}
+
+M.telescope = {
+  extensions = {
+    aerial = {
+      -- Display symbols as <root>.<parent>.<symbol>
+      show_nesting = {
+        ["_"] = false, -- This key will be the default
+        json = true, -- You can set the option for specific filetypes
+        yaml = true,
+      },
+    },
   },
 }
 
@@ -56,31 +74,6 @@ M.trouble = {
   use_diagnostic_signs = true, -- enabling this will use the signs defined in your lsp client
 }
 
-M.illuminate = {
-  delay = 200,
-  filetypes_denylist = {
-    "dirvish",
-    "fugitive",
-    "alpha",
-    "NvimTree",
-    "packer",
-    "neogitstatus",
-    "Trouble",
-    "lir",
-    "Outline",
-    "spectre_panel",
-    "toggleterm",
-    "DressingSelect",
-    "TelescopePrompt",
-    "aerial",
-    "Empty",
-  },
-  large_file_cutoff = 2000,
-  large_file_overrides = {
-    providers = { "lsp" },
-  },
-}
-
 M.fidget = {
   window = { blend = 0 },
   fmt = {
@@ -89,7 +82,7 @@ M.fidget = {
 }
 
 M.smartcolumn = {
-  colorcolumn = "120",
+  colorcolumn = "100",
   disabled_filetypes = {
     "help",
     "text",
@@ -99,7 +92,9 @@ M.smartcolumn = {
     "lsp",
     "nvdash",
   },
-  custom_colorcolumn = {},
+  custom_colorcolumn = {
+    { cpp = "120", lua = "120" },
+  },
   scope = "file",
 }
 return M

@@ -8,4 +8,5 @@ lint.linters_by_ft = {
   c = { "clangtidy" },
   cpp = { "clangtidy" },
   lua = { "luacheck" },
+  sh = { "shellcheck"},
 }

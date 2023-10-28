@@ -2,9 +2,8 @@
 local M = {}
 
 local highlights = require("custom.highlights")
-
 M.ui = {
-  theme = "catppuccin",
+  theme = "aquarium",
   transparency = false,
   hl_override = highlights.override,
 
@@ -19,8 +18,8 @@ M.ui = {
   },
 }
 
-M.plugins = "custom.plugins"
-
 M.mappings = require("custom.mappings")
+
+M.plugins = "custom.plugins"
 
 return M
