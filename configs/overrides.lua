@@ -66,6 +66,7 @@ M.treesitter = {
     "python",
     "regex",
     "rust",
+    "toml",
     "vimdoc",
     "yaml",
   },
