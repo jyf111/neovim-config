@@ -1,9 +1,27 @@
 local M = {}
 
+M.advanced_git_search = {
+  n = {
+    ["<leader>gs"] = {
+      "<cmd> AdvancedGitSearch <CR>",
+      "Advanced git search",
+    },
+  },
+}
+
+M.livegrep = {
+  n = {
+    ["<leader>fg"] = {
+      "<cmd> lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+      "Telescope live grep args",
+    },
+  },
+}
+
 M.todos = {
   n = {
-    ["<leader>td"] = { "<cmd> TodoTrouble <CR>", "Trouble todos" },
-    ["<leader>ts"] = { "<cmd> TodoTelescope <CR>", "Telescope todos" },
+    ["<leader>td"] = { "<cmd> TodoTrouble <CR>", "Trouble todo" },
+    ["<leader>ts"] = { "<cmd> TodoTelescope <CR>", "Telescope todo" },
   },
 }
 
@@ -33,6 +51,12 @@ M.glance = {
     ["gY"] = { "<cmd> Glance type_definitions <CR>", "Glance type definitions" },
     ["gM"] = { "<cmd> Glance implementations <CR>", "Glance implementations" },
   },
+}
+
+M.markdown = {
+  n = {
+    ["<F12>"] = { "<cmd> MarkdownPreviewToggle <CR>", "Toggle markdown preview"}
+  }
 }
 
 return M

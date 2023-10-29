@@ -28,11 +28,21 @@ M.telescope = {
         yaml = true,
       },
     },
+    fzf = {
+      fuzzy = true, -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true, -- override the file sorter
+      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+      -- the default case_mode is "smart_case"
+    },
+    live_grep_args = {
+      auto_quoting = true, -- enable/disable auto-quoting
+    },
   },
 }
 
 M.treesitter = {
-  highlight = { enable = true },
+  highlight = { enable = true, disable = { "c", "cpp", "rust" } },
   indent = { enable = true },
   ensure_installed = {
     "bash",
@@ -85,12 +95,16 @@ M.smartcolumn = {
   colorcolumn = "100",
   disabled_filetypes = {
     "help",
-    "text",
-    "markdown",
     "lazy",
-    "mason",
     "lsp",
+    "markdown",
+    "mason",
     "nvdash",
+    "text",
+    "terminal",
+    "toggleterm",
+    "trouble",
+    "Trouble",
   },
   custom_colorcolumn = {
     { cpp = "120", lua = "120" },

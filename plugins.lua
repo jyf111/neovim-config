@@ -21,6 +21,7 @@ local plugins = {
       },
       {
         "mfussenegger/nvim-lint",
+        events = { "BufReadPost", "BufNewFile", "BufWritePre" },
         config = function()
           require("custom.configs.nvim-lint")
         end,
@@ -29,7 +30,7 @@ local plugins = {
         "dnlhc/glance.nvim",
         config = function()
           require("custom.configs.glance")
-        end
+        end,
       },
       {
         "kevinhwang91/nvim-ufo",
@@ -61,7 +62,8 @@ local plugins = {
   },
   {
     "stevearc/conform.nvim",
-    cmd = { "Format", "FormatEnable", "FormatDisable" },
+    lazy = true,
+    cmd = { "ConformInfo", "Format", "FormatEnable", "FormatDisable" },
     opts = {},
     config = function()
       require("custom.configs.conform")
@@ -91,12 +93,22 @@ local plugins = {
         end,
       },
       { "lukas-reineke/cmp-under-comparator" },
+      {
+        "p00f/clangd_extensions.nvim",
+        lazy = true,
+        config = function() end,
+        opts = {
+          inlay_hints = {
+            inline = false,
+          },
+        },
+      },
     },
   },
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
     opts = overrides.treesitter,
     dependencies = {
       {
@@ -111,24 +123,32 @@ local plugins = {
           require("custom.configs.autotag")
         end,
       },
-      {
-        "abecodes/tabout.nvim",
-        config = function()
-          require("custom.configs.tabout")
-        end,
-      },
+      { "andymass/vim-matchup" },
     },
   },
   {
     "nvim-telescope/telescope.nvim",
     opts = overrides.telescope,
     dependencies = {
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-      { "nvim-telescope/telescope-live-grep-args.nvim" },
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+        enabled = vim.fn.executable("make") == 1,
+        config = function()
+          require("telescope").load_extension("fzf")
+        end,
+      },
+      {
+        "nvim-telescope/telescope-live-grep-args.nvim",
+        config = function()
+          require("telescope").load_extension("live_grep_args")
+        end,
+      },
       {
         "aaronhallaert/advanced-git-search.nvim",
+        cmd = { "AdvancedGitSearch" },
         config = function()
-          require("custom.configs.advanced-git-search")
+          require("telescope").load_extension("advanced_git_search")
         end,
         dependencies = {
           "tpope/vim-fugitive",
@@ -151,20 +171,16 @@ local plugins = {
   {
     "folke/flash.nvim",
     event = "VeryLazy",
-    ---@type Flash.Config
     opts = {},
     -- stylua: ignore
     keys = {
       { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
       { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
   {
     "tzachar/local-highlight.nvim",
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     config = function()
       require("custom.configs.local-highlight")
     end,
@@ -190,14 +206,36 @@ local plugins = {
   },
   {
     "m4xshen/smartcolumn.nvim",
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     opts = overrides.smartcolumn,
   },
   {
     "dstein64/nvim-scrollview",
-    event = { "BufReadPost", "BufAdd", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     config = function()
       require("custom.configs.scrollview")
+    end,
+  },
+  {
+    "echasnovski/mini.indentscope",
+    version = false, -- wait till new 0.7.0 release to put it back on semver
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    opts = {
+      -- symbol = "▏",
+      symbol = "│",
+      options = { try_as_border = true },
+    },
+  },
+  {
+    "stevearc/dressing.nvim",
+    lazy = true,
+    opts = {},
+  },
+  {
+    "keaising/im-select.nvim",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    config = function()
+      require("im_select").setup({})
     end,
   },
 }

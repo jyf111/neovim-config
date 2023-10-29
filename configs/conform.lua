@@ -5,6 +5,11 @@ if not present then
 end
 
 conform.setup({
+  format = {
+    timeout_ms = 3000,
+    async = false, -- not recommended to change
+    quiet = false, -- not recommended to change
+  },
   formatters_by_ft = {
     lua = { "stylua" },
     python = { "isort" },

@@ -14,6 +14,6 @@ local_highlight.setup({
   }, -- If this is given only attach to this
   -- OR attach to every filetype except:
   disable_file_types = { "tex", "markdown" },
-  hlgroup = "Search",
+  hlgroup = "CursorLine",
   cw_hlgroup = nil,
 })

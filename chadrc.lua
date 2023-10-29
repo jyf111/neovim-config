@@ -1,4 +1,4 @@
----@type ChadrcConfig
+---@class ChadrcConfig
 local M = {}
 
 local highlights = require("custom.highlights")
@@ -10,8 +10,10 @@ M.ui = {
   nvdash = {
     load_on_startup = true,
     buttons = {
+      { "  Explore File", "<Ctrl> n", "NvimTreeToggle" },
       { "  Find File", "<leader> f f", "Telescope find_files" },
       { "󰈭  Find Word", "<leader> f w", "Telescope live_grep" },
+      { "󰊢  Git Search", "<leader> g s", "AdvancedGitSearch" },
       { "  Themes", "<leader> t h", "Telescope themes" },
       { "  Mappings", "<leader> c h", "NvCheatsheet" },
     },
