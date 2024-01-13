@@ -65,6 +65,7 @@ M.treesitter = {
     "markdown_inline",
     "python",
     "regex",
+    "ron",
     "rust",
     "toml",
     "vimdoc",

@@ -2,6 +2,22 @@ local overrides = require("custom.configs.overrides")
 
 local plugins = {
   {
+    "stevearc/aerial.nvim",
+    cmd = { "AerialToggle" },
+    config = function()
+      require("custom.configs.aerial")
+    end,
+  },
+  {
+    "stevearc/conform.nvim",
+    lazy = true,
+    cmd = { "ConformInfo", "Format", "FormatEnable", "FormatDisable" },
+    opts = {},
+    config = function()
+      require("custom.configs.conform")
+    end,
+  },
+  {
     "neovim/nvim-lspconfig",
     event = { "CursorHold", "CursorHoldI" },
     dependencies = {
@@ -11,6 +27,19 @@ local plugins = {
       },
       { "williamboman/mason-lspconfig.nvim" },
       {
+        "dnlhc/glance.nvim",
+        config = function()
+          require("custom.configs.glance")
+        end,
+      },
+      {
+        "mfussenegger/nvim-lint",
+        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+        config = function()
+          require("custom.configs.nvim-lint")
+        end,
+      },
+      {
         "utilyre/barbecue.nvim",
         name = "barbecue",
         version = "*",
@@ -18,19 +47,6 @@ local plugins = {
           "SmiteshP/nvim-navic",
         },
         opts = {},
-      },
-      {
-        "mfussenegger/nvim-lint",
-        events = { "BufReadPost", "BufNewFile", "BufWritePre" },
-        config = function()
-          require("custom.configs.nvim-lint")
-        end,
-      },
-      {
-        "dnlhc/glance.nvim",
-        config = function()
-          require("custom.configs.glance")
-        end,
       },
       {
         "kevinhwang91/nvim-ufo",
@@ -62,28 +78,6 @@ local plugins = {
     end,
   },
   {
-    "stevearc/conform.nvim",
-    lazy = true,
-    cmd = { "ConformInfo", "Format", "FormatEnable", "FormatDisable" },
-    opts = {},
-    config = function()
-      require("custom.configs.conform")
-    end,
-  },
-  {
-    "stevearc/aerial.nvim",
-    cmd = { "AerialToggle" },
-    config = function()
-      require("custom.configs.aerial")
-    end,
-  },
-  {
-    "j-hui/fidget.nvim",
-    tag = "legacy",
-    event = "LspAttach",
-    opts = overrides.fidget,
-  },
-  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       {
@@ -107,6 +101,12 @@ local plugins = {
     },
   },
   {
+    "mrcjkb/rustaceanvim",
+    lazy = true,
+    version = "^3", -- Recommended
+    ft = { "rust" },
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
@@ -114,18 +114,86 @@ local plugins = {
     dependencies = {
       {
         "nvim-treesitter/nvim-treesitter-context",
+        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         config = function()
           require("custom.configs.ts-context")
         end,
       },
       {
         "windwp/nvim-ts-autotag",
+        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         config = function()
           require("custom.configs.autotag")
         end,
       },
-      { "andymass/vim-matchup" },
+      {
+        "andymass/vim-matchup",
+        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+        init = function()
+          vim.g.matchup_matchparen_offscreen = { method = "popup", fullwidth = 1, highlight = "Normal", syntax_hl = 1 }
+        end,
+        opts = { matchup = { enable = true } },
+      },
     },
+  },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+    -- stylua: ignore
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+    },
+  },
+  {
+    "echasnovski/mini.cursorword",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    version = false,
+    config = function()
+      require("custom.configs.cursorword")
+    end,
+  },
+  {
+    "nacro90/numb.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("custom.configs.numb")
+    end,
+  },
+  {
+    "dstein64/nvim-scrollview",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    config = function()
+      require("custom.configs.scrollview")
+    end,
+  },
+  {
+    "f-person/git-blame.nvim",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+  },
+  {
+    "keaising/im-select.nvim",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    config = function()
+      require("im_select").setup({})
+    end,
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    ft = "markdown",
+    build = ":call mkdp#util#install()",
+  },
+  {
+    "folke/trouble.nvim",
+    cmd = { "TroubleToggle", "Trouble" },
+    opts = overrides.trouble,
+  },
+  {
+    "folke/todo-comments.nvim",
+    cmd = { "TodoTrouble", "TodoTelescope" },
+    event = { "BufReadPost", "BufNewFile" },
+    confidgg = true,
   },
   {
     "nvim-telescope/telescope.nvim",
@@ -159,62 +227,22 @@ local plugins = {
     },
   },
   {
-    "folke/trouble.nvim",
-    cmd = { "TroubleToggle", "Trouble" },
-    opts = overrides.trouble,
-  },
-  {
-    "folke/todo-comments.nvim",
-    cmd = { "TodoTrouble", "TodoTelescope" },
-    event = { "BufReadPost", "BufNewFile" },
-    config = true,
-  },
-  {
-    "folke/flash.nvim",
+    "echasnovski/mini.animate",
     event = "VeryLazy",
-    opts = {},
-    -- stylua: ignore
-    keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-    },
-  },
-  {
-    "tzachar/local-highlight.nvim",
-    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-    config = function()
-      require("custom.configs.local-highlight")
-    end,
-  },
-  {
-    "nacro90/numb.nvim",
-    event = "CmdlineEnter",
-    config = function()
-      require("custom.configs.numb")
-    end,
-  },
-  {
-    "declancm/cinnamon.nvim",
-    event = { "CursorHold", "CursorHoldI" },
-    config = function()
-      require("custom.configs.cinnamon")
-    end,
-  },
-  {
-    "iamcco/markdown-preview.nvim",
-    ft = "markdown",
-    build = ":call mkdp#util#install()",
-  },
-  {
-    "m4xshen/smartcolumn.nvim",
-    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-    opts = overrides.smartcolumn,
-  },
-  {
-    "dstein64/nvim-scrollview",
-    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-    config = function()
-      require("custom.configs.scrollview")
+    -- enabled = false,
+    opts = function()
+      local animate = require("mini.animate")
+      return {
+        resize = {
+          timing = animate.gen_timing.linear({ duration = 100, unit = "total" }),
+        },
+        scroll = {
+          enable = false,
+        },
+        cursor = {
+          timing = animate.gen_timing.linear({ duration = 80, unit = "total" }),
+        },
+      }
     end,
   },
   {
@@ -229,60 +257,57 @@ local plugins = {
     init = require("custom.configs.indentscope"),
   },
   {
+    "declancm/cinnamon.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("custom.configs.cinnamon")
+    end,
+  },
+  {
     "stevearc/dressing.nvim",
     lazy = true,
     opts = {},
-  },
-  {
-    "keaising/im-select.nvim",
-    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-    config = function()
-      require("im_select").setup({})
-    end,
-  },
-  {
-    "echasnovski/mini.animate",
-    event = "VeryLazy",
-    cond = not vim.g.neovide,
-    -- enabled = false,
-    opts = function()
-      -- don't use animate when scrolling with the mouse
-      local mouse_scrolled = false
-      for _, scroll in ipairs({ "Up", "Down" }) do
-        local key = "<ScrollWheel" .. scroll .. ">"
-        vim.keymap.set({ "", "i" }, key, function()
-          mouse_scrolled = true
-          return key
-        end, { expr = true })
+    init = function()
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.select = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.select(...)
       end
-
-      local animate = require("mini.animate")
-      return {
-        resize = {
-          timing = animate.gen_timing.linear({ duration = 100, unit = "total" }),
-        },
-        scroll = {
-          timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
-          subscroll = animate.gen_subscroll.equal({
-            predicate = function(total_scroll)
-              if mouse_scrolled then
-                mouse_scrolled = false
-                return false
-              end
-              return total_scroll > 1
-            end,
-          }),
-        },
-        cursor = {
-          timing = animate.gen_timing.linear({ duration = 80, unit = "total" }),
-        },
-      }
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.input = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.input(...)
+      end
     end,
   },
   {
-    "f-person/git-blame.nvim",
-    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    "j-hui/fidget.nvim",
+    tag = "legacy",
+    event = "LspAttach",
+    opts = overrides.fidget,
   },
+  {
+    "m4xshen/smartcolumn.nvim",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    opts = overrides.smartcolumn,
+  },
+  -- {
+  --   "m4xshen/hardtime.nvim",
+  --   event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+  --   opts = {
+  --     disabled_keys = {
+  --       ["<Insert>"] = { "", "i" },
+  --       ["<Home>"] = { "", "i" },
+  --       ["<End>"] = { "", "i" },
+  --       ["<PageUp>"] = { "", "i" },
+  --       ["<PageDown>"] = { "", "i" },
+  --     },
+  --   },
+  --   config = function(_, opts)
+  --     require("hardtime").setup(opts)
+  --     require("hardtime").enable()
+  --   end,
+  -- },
 }
 
 return plugins
