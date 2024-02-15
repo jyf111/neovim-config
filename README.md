@@ -73,6 +73,7 @@ NvChadUpdate
 - [echasnovski/mini.cursorword](https://github.com/echasnovski/mini.cursorword)
 - [nacro90/numb.nvim](https://github.com/nacro90/numb.nvim) peek jump to line number
 - [dstein64/nvim-scrollview](https://github.com/dstein64/nvim-scrollview) scroll bar
+- [LunarVim/bigfile.nvim](https://github.com/LunarVim/bigfile.nvim)
 
 ### Tool
 

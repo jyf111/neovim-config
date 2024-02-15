@@ -169,6 +169,13 @@ local plugins = {
     end,
   },
   {
+    "LunarVim/bigfile.nvim",
+    lazy = false,
+    config = function()
+      require("custom.configs.bigfile")
+    end,
+  },
+  {
     "f-person/git-blame.nvim",
     event = { "BufReadPost", "BufNewFile", "BufWritePre" },
   },
