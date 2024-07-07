@@ -220,4 +220,12 @@ return {
     lazy = true,
     opts = overrides.smartcolumn,
   },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    lazy = true,
+    event = { "CursorHold", "CursorHoldI" },
+    config = function()
+      require "configs.ibl"
+    end,
+  },
 }
