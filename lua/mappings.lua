@@ -32,3 +32,6 @@ map("n", "<leader>ts", "<cmd>TodoTelescope<CR>", { desc = "Telescope todo" })
 
 -- troubles
 map("n", "<leader>tt", "<cmd>Trouble diagnostics toggle<CR>", { desc = "Trouble toggle" })
+
+-- trailspace
+map("n", "<leader>rt", "<cmd>lua MiniTrailspace.trim()<CR>", { desc = "Remove trailspace" })

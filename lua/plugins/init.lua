@@ -35,7 +35,6 @@ return {
           { "kevinhwang91/promise-async" },
           {
             "luukvbaal/statuscol.nvim",
-            opts = {},
             config = function()
               require "configs.statuscol"
             end,
@@ -226,6 +225,14 @@ return {
     event = { "CursorHold", "CursorHoldI" },
     config = function()
       require "configs.ibl"
+    end,
+  },
+  {
+    "echasnovski/mini.trailspace",
+    version = false,
+    event = { "BufRead", "BufNewFile" },
+    config = function()
+      require("mini.trailspace").setup {}
     end,
   },
 }

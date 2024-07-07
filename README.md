@@ -81,6 +81,7 @@ NvCheatsheet
 - [m4xshen/smartcolumn.nvim](https://github.com/m4xshen/smartcolumn.nvim) colorcolumn
 - [zbirenbaum/neodim](https://github.com/zbirenbaum/neodim) dim unused variables and functions
 - [Bekaboo/dropbar.nvim](https://github.com/Bekaboo/dropbar.nvim)
+- [echasnovski/mini.trailspace](https://github.com/echasnovski/mini.trailspace) highlight trailspace
 
 ## Uninstall
 

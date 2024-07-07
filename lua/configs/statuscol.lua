@@ -6,6 +6,7 @@ end
 
 local builtin = require "statuscol.builtin"
 statuscol.setup {
+  setopt = true,
   relculright = true,
   segments = {
     { text = { builtin.foldfunc }, click = "v:lua.ScFa" },

@@ -19,7 +19,7 @@ M.mason = {
 }
 
 M.treesitter = {
-  highlight = { enable = true, disable = { "c", "cpp", "rust" } },
+  highlight = { enable = true, disable = { "rust" } },
   indent = { enable = true },
   matchup = { enable = true },
   ensure_installed = {
