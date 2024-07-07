@@ -4,10 +4,16 @@ if not present then
   return
 end
 
-scrollview.setup({
-  scrollview_mode = "virtual",
-  excluded_filetypes = { "NvimTree", "terminal", "nofile", "Outline" },
+scrollview.setup {
+  mode = "virtual",
   winblend = 0,
-  current_only = true,
   signs_on_startup = { "diagnostics", "folds", "marks", "search", "spell" },
-})
+  excluded_filetypes = {
+    "fugitive",
+    "git",
+    "NvimTree",
+    "Outline",
+    "terminal",
+    "nofile",
+  },
+}

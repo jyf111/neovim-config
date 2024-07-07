@@ -1,5 +1,6 @@
-local configs = require("plugins.configs.lspconfig")
+local configs = require("nvchad.configs.lspconfig")
 local on_attach = configs.on_attach
+local on_init = configs.on_init
 local capabilities = configs.capabilities
 capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
@@ -7,7 +8,6 @@ capabilities.textDocument.foldingRange = {
 }
 
 local lspconfig = require("lspconfig")
-local navic = require("nvim-navic")
 
 local servers = {
   "clangd",
@@ -24,24 +24,18 @@ require("mason-lspconfig").setup({
 local merge_tb = vim.tbl_deep_extend
 
 local default_handler = {
-  on_attach = function(client, bufnr)
-    if client.server_capabilities.documentSymbolProvider then
-      navic.attach(client, bufnr)
-    end
-    on_attach(client, bufnr)
-  end,
+  on_attach = on_attach,
+  on_init = on_init,
   capabilities = capabilities,
 }
 
 local clangd_handler = {
   on_attach = function(client, bufnr)
-    if client.server_capabilities.documentSymbolProvider then
-      navic.attach(client, bufnr)
-    end
     require("clangd_extensions.inlay_hints").setup_autocmd()
     require("clangd_extensions.inlay_hints").set_inlay_hints()
     on_attach(client, bufnr)
   end,
+  on_init = on_init,
   capabilities = capabilities,
 }
 

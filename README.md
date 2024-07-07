@@ -10,10 +10,10 @@ Custom configuration based on [`NvChad`](https://github.com/NvChad/NvChad).
 
 ## Install
 
-1. install newest Neovim (current 0.9.5)
+1. install newest Neovim (current 0.10.0)
 
 ```shell
-curl -LO https://github.com/neovim/neovim/releases/download/v0.9.5/nvim.appimage
+curl -LO https://github.com/neovim/neovim/releases/download/v0.10.0/nvim.appimage
 chmod u+x nvim.appimage
 ./nvim.appimage --appimage-extract
 ./squashfs-root/AppRun --version
@@ -22,29 +22,22 @@ sudo ln -s /squashfs-root/AppRun /usr/local/bin/nvim
 rm ./nvim.appimage
 ```
 
-2. install NvChad
+2. download custom configs
 
 ```shell
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
-nvim # press N
+git clone https://github.com/jyf111/neovim-config ~/.config/nvim --depth 1
 ```
 
-3. download custom configs
-
-```shell
-rm -rf ~/.config/nvim/lua/custom && git clone https://github.com/jyf111/neovim-config ~/.config/nvim/lua/custom --depth 1
-```
-
-4. LSP server dependencies
+3. LSP server dependencies
 
 ```shell
 sudo apt install python3-venv luarocks
 ```
 
-5. update
+4. mappings
 
 ```shell
-NvChadUpdate
+NvCheatsheet
 ```
 
 ## Extra plugins
@@ -52,22 +45,18 @@ NvChadUpdate
 ### Lang
 
 - [stevearc/aerial.nvim](https://github.com/stevearc/aerial.nvim) code outline
-- [stevearc/conform.nvim](https://github.com/stevearc/conform.nvim) autoformat
 - [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)
 - [williamboman/mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
 - [dhlhc/glance.nvim](https://github.com/dhlhc/glance.nvim)
-- [mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint)
 - [hrsh7th/cmp-cmdline](https://github.com/hrsh7th/cmp-cmdline)
 - [lukas-reineke/cmp-under-comparator](https://github.com/lukas-reineke/cmp-under-comparator)
 - [p00f/clangd_extensions.nvim](https://github.com/p00f/clangd_extensions.nvim)
-- [mrcjkb/rustaceanvim](https://github.com/mrcjkb/rustaceanvim)
 - [nvim-treesitter/nvim-treesitter-context](nvim-treesitter/nvim-treesitter-context)
 - [windwp/nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
 - [andymass/vim-matchup](https://github.com/andymass/vim-matchup)
 
 ### Editor
 
-- [utilyre/barbecue.nvim](https://github.com/utilyre/barbecue.nvim)
 - [kevinhwang91/nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) fold column
 - [folke/flash.nvim](https://github.com/folke/flash.nvim)
 - [echasnovski/mini.cursorword](https://github.com/echasnovski/mini.cursorword)
@@ -88,12 +77,10 @@ NvChadUpdate
 
 ### UI
 
-- [echasnovski/mini.animate](https://github.com/echasnovski/mini.animate)
-- [echasnovski/mini.indentscope](https://github.com/echasnovski/mini.indentscope)
-- [declancm/cinnamon.nvim](https://github.com/declancm/cinnamon.nvim) smooth movement
-- [stevearc/dressing.nvim](https://github.com/stevearc/dressing.nvim)
 - [j-hui/fidget.nvim](https://github.com/j-hui/fidget.nvim) LSP progress notify
 - [m4xshen/smartcolumn.nvim](https://github.com/m4xshen/smartcolumn.nvim) colorcolumn
+- [zbirenbaum/neodim](https://github.com/zbirenbaum/neodim) dim unused variables and functions
+- [Bekaboo/dropbar.nvim](https://github.com/Bekaboo/dropbar.nvim)
 
 ## Uninstall
 
@@ -103,5 +90,6 @@ sudo rm /usr/local/bin/nvim
 sudo rm -rf /squashfs-root/
 # rm configs
 rm -rf $HOME/.config/nvim
+rm -rf $HOME/.local/state/nvim
 rm -rf $HOME/.local/share/nvim
 ```

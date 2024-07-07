@@ -1,10 +1,12 @@
----@class ChadrcConfig
+-- This file needs to have same structure as nvconfig.lua
+-- https://github.com/NvChad/ui/blob/v2.5/lua/nvconfig.lua
+
+---@type ChadrcConfig
 local M = {}
 
-local highlights = require("custom.highlights")
+local highlights = require "highlights"
 M.ui = {
   theme = "aquarium",
-  transparency = false,
   hl_override = highlights.override,
 
   nvdash = {
@@ -19,9 +21,5 @@ M.ui = {
     },
   },
 }
-
-M.mappings = require("custom.mappings")
-
-M.plugins = "custom.plugins"
 
 return M
